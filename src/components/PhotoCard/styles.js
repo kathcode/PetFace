@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { fadeIn } from '../../styles/animation';
 
+export const ArticleWrapper = styled.article`
+  margin: 20px;
+`;
+
 export const ImgWrapper = styled.div`
   border-radius: 10px;
   display: block;
