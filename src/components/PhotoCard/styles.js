@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { fadeIn } from '../../styles/animation';
+import { MdFavoriteBorder } from 'react-icons/md';
 
-export const ArticleWrapper = styled.article`
+export const Article= styled.article`
   margin: 20px;
+  min-height: 200px;
 `;
 
 export const ImgWrapper = styled.div`
@@ -31,5 +33,9 @@ export const Button = styled.button`
   padding-top: 8px;
   & svg {
     margin-right: 4px;
+
+    & path {
+      fill: #b5dde5
+    }
   }
 `;
