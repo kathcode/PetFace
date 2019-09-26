@@ -21,17 +21,14 @@ const withPhotos = graphql(gql`
     component with injected improvements
     */
 
-const ListOfPhotoCardsComponent = (props) => {
-  const { data } = props;
+const ListOfPhotoCardsComponent = ({ data: { photos = [] } = {} }) => {
   return (
     <>
-      {!data.loading && (
-        <ul>
-          {data.photos && data.photos.map((photo) => (
-            <PhotoCard key={photo.id} likeId={photo.id} />
-          ))}
-        </ul>
-      )}
+      <ul>
+        {photos.map((photo) => (
+          <PhotoCard key={photo.id} likeId={photo.id} />
+        ))}
+      </ul>
     </>
   );
 };
