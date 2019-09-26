@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FaSpinner } from 'react-icons/fa';
-
 import { Category } from '../Category';
 import { Spinner } from '../../sharedComponents/Spinner';
 
