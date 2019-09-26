@@ -1,47 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import {
   ImgWrapper, Img, Button, Article,
 } from './styles';
 
+// Own Hooks
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useNearScreen } from '../../hooks/useNearScreen';
+
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60';
 
 export const PhotoCard = ({ likeId, likes = 0, src = DEFAULT_IMAGE }) => {
-  const refElement = useRef(null);
-  const [show, setShow] = useState(false);
-
-  const [liked, setLiked] = useState(() => {
-    try {
-      const like = window.localStorage.getItem(likeId);
-
-      return like;
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
-  useEffect(() => {
-    const observer = new window.IntersectionObserver((entries) => {
-      const { isIntersecting } = entries[0];
-
-      if (isIntersecting) {
-        setShow(true);
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(refElement.current);
-  }, [refElement]);
-
-  const setLocalStorage = (value) => {
-    try {
-      window.localStorage.setItem(likeId, value);
-      setLiked(value);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  const key = `like-${likeId}`;
+  const [liked, setLiked] = useLocalStorage(key, false);
+  const [show, refElement] = useNearScreen();
   const Icon = liked ? MdFavorite : MdFavoriteBorder;
 
   return (
@@ -54,7 +26,7 @@ export const PhotoCard = ({ likeId, likes = 0, src = DEFAULT_IMAGE }) => {
             </ImgWrapper>
           </a>
 
-          <Button onClick={() => setLocalStorage(!liked)}>
+          <Button onClick={() => setLiked(!liked)}>
             <Icon size="32px" />
             {`${likes} likes!` }
           </Button>
