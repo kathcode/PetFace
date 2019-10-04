@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { fadeIn } from '../../styles/animation';
-import { MdFavoriteBorder } from 'react-icons/md';
 
-export const Article= styled.article`
+export const Article = styled.article`
   margin: 20px;
   min-height: 200px;
 `;
@@ -25,17 +24,4 @@ export const Img = styled.img`
   position: absolute;
   top: 0;
   width: 100%;
-`;
-
-export const Button = styled.button`
-  display: flex;
-  align-items: center;
-  padding-top: 8px;
-  & svg {
-    margin-right: 4px;
-
-    & path {
-      fill: #b5dde5
-    }
-  }
 `;
